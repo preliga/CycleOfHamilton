@@ -16,3 +16,10 @@ class Arc:
 
     def getValue(self):
         return self.__value
+
+    def getName(self):
+        return self.__class__.__name__
+
+
+    def __str__(self):
+        return str(self.__to)

@@ -1,4 +1,3 @@
-
 import matplotlib.pyplot as plt
 import networkx as nx
 
@@ -44,15 +43,6 @@ class GraphPlot:
         nx.draw_networkx_labels(G,pos,_graph.getTopsLabel(),font_size=12)
         plt.title('GRAF (cykl hamiltona)', fontsize=15)
 
-        if _cycle.isCycle():
-            plt.text(0, -1.2, 'Wartość cyklu: %d' % (_cycle.getValue()),
-                    verticalalignment='bottom', horizontalalignment='right',
-                    color='green', fontsize=15)
-        else:
-            plt.text(0, -1.2, 'Brak cyklu hamiltona',
-                     verticalalignment='bottom', horizontalalignment='right',
-                     color='green', fontsize=15)
-
         plt.axis('off')
-        plt.savefig("labels_and_colors.png") # save as png
+
         plt.show() # display

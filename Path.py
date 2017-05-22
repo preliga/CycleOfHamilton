@@ -73,8 +73,28 @@ class Path:
 
         return self.__tops[0]
 
+    def getName(self):
+        return self.__class__.__name__
+
+    def getTops(self):
+        return self.__tops
+
+    def getArcs(self):
+        return self.__arcs
+
+    def myCopy(self, _path):
+        self.__tops = _path.getTops().copy()
+        self.__arcs = _path.getArcs().copy()
+
+    def __contains__(self, item):
+
+        if item.getName() == 'Top':
+            return item in self.__tops
+        else:
+            return item in self.__arcs
+
     def __str__(self):
-        path = "Path: "
+        path = "Cykl: "
 
         for top in self.__tops:
             path += str(top.getKey()) + " "

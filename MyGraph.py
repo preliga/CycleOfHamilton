@@ -2,6 +2,7 @@ from Path import Path
 from Top import Top
 import random
 from Arc import Arc
+import copy
 
 class MyGraph:
 
@@ -40,7 +41,7 @@ class MyGraph:
         for topFrom in tops:
             for topTo in tops:
                 if topFrom != topTo:
-                    if random.randint(0, 1) == 1:
+                    if random.randint(0, 2) != 1:
                         topFrom.addArc(Arc(topFrom, topTo, random.randint(1, _valueOfArc)))
 
         for top in tops:
@@ -85,6 +86,33 @@ class MyGraph:
         return False
 
 
+    def hamiltonCycleAllPath(self):
+
+        minPath = Path()
+        for top in self.__tops:
+            path = Path()
+            path.addTop(top)
+            self.__allPath(top,path,minPath)
+
+        return minPath
+
+    def __allPath(self,_top, _path, _minPath):
+        for arc in _top.getArcs():
+            if arc.getTo() not in _path:
+                _path.addTop(arc.getTo())
+                _path.addArc(arc)
+
+                if _path.getSize() == len(self.__tops):
+                    if _minPath.getValue() == -1 or _minPath.getValue() > _path.getValue():
+                        if _path.isCycle():
+                            _minPath.myCopy(_path)
+
+                self.__allPath(arc.getTo(), _path, _minPath)
+
+                _path.removeTop(arc.getTo())
+                _path.removeArc(arc)
+
+
     def hamiltonCyclePermutation(self):
         tops = self.__tops.copy()
 
@@ -127,7 +155,5 @@ class MyGraph:
     def __str__(self):
         graphStr = ''
         for top in self.__tops:
-            graphStr += str(top) + ": " + top.getArcsList() + "\n"
-            # print(str(top) + ": ")
-            # print(str(top) + ": " + top.getArcsList())
+            graphStr += str(top) + ": " + top.getArcsList() + "<br>"
         return graphStr

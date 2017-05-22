@@ -1,5 +1,3 @@
-from Arc import Arc
-
 class Top:
 
     counter = 0
@@ -23,17 +21,6 @@ class Top:
         self.__arcs.append(_arc)
         return self
 
-    # def addArc(self, _to, _value = 0,): #  _arc
-    #     arc1 = Arc(self,_to,_value)
-    #     arc2 = Arc(_to, self, _value)
-    #
-    #
-    #     self.__arcs.append(arc1)
-    #     _to.__arcs.append(arc2)
-    #
-    #     # self.__arcs.sort()
-    #     return self
-
     def getArcsList(self):
         arcList = ""
 
@@ -52,6 +39,9 @@ class Top:
         for arc in self.__arcs:
             if arc.getTo() == _to:
                 return arc
+
+    def getName(self):
+        return self.__class__.__name__
 
     def __str__(self):
         return str(self.__key)

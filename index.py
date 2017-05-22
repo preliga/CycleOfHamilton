@@ -1,13 +1,3 @@
-from Top import Top
-from Arc import Arc
-from MyGraph import MyGraph
-from Path import Path
-from GraphPlot import GraphPlot
-import random
-
-import datetime
-import time
-
 # t0 = Top()
 # t1 = Top()
 # t2 = Top()
@@ -42,32 +32,11 @@ import time
 #     .addTop(t3)\
 #     .addTop(t4)
 
-numbersOfTop = random.randint(2,100)
-# numbersOfTop = 10
-print("Tops: %d" % (numbersOfTop))
+from App import App
+from PyQt5.QtWidgets import QApplication
 
-myGraph = MyGraph()
-myGraph.addRandomTopsAndArcs(numbersOfTop,12)
-
-# time1 = datetime.datetime.now().microsecond
-path = myGraph.hamiltonCycle()
-# path = myGraph.hamiltonCyclePermutation()
-# time2 = datetime.datetime.now().microsecond
-
-# delta = time2 - time1
-# delta = (datetime.datetime.strptime(time2,'%H:%M:%S') - datetime.datetime.strptime(time1,'%H:%M:%S'))
-# print(delta)
-# print(delta.microseconds)
-
-# print(time1)
-# print(time2)
-
-
-
-
-print(path)
-print(path.isCycle())
-print(path.getValue())
-
-graphPlot = GraphPlot()
-graphPlot.drawGraphPlot(myGraph,path)
+if __name__ == '__main__':
+    import sys
+    app = QApplication(sys.argv)
+    okno = App()
+    sys.exit(app.exec_())
